@@ -5,7 +5,7 @@ const borderRadius = 20;
 
 export const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "white" },
-  sectionContainer: { marginTop: 40 },
+  sectionContainer: { marginTop: 25 },
   sectionHeader: {
     marginHorizontal: 20,
     marginBottom: 20,

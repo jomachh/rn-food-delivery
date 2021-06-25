@@ -10,78 +10,82 @@ export const TabBar = ({ state, descriptors, navigation }) => {
   }
 
   return (
-    <View style={styles.bottomNavigator}>
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+    <View style={{ backgroundColor: "white" }}>
+      <View style={styles.bottomNavigator}>
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+              ? options.title
+              : route.name;
 
-        const isFocused = state.index === index;
+          const isFocused = state.index === index;
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-            canPreventDefault: true,
-          });
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name);
+            }
+            navigation.setOptions({ title: label });
+          };
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: "tabLongPress",
-            target: route.key,
-          });
-        };
+          const onLongPress = () => {
+            navigation.emit({
+              type: "tabLongPress",
+              target: route.key,
+            });
+          };
 
-        return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityStates={isFocused ? ["selected"] : []}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={[
-              styles.tab,
-              label === "Cart" && {
-                backgroundColor: isFocused ? "#00C5BD" : "#5919AD",
-                borderRadius: 30,
-                marginHorizontal: 35,
-              },
-            ]}
-          >
-            <MaterialIcons
-              name={
-                label === "Home"
-                  ? "home"
-                  : label === "Business"
-                  ? "store"
-                  : label === "Cart"
-                  ? "shopping-cart"
-                  : label === "Fav" && isFocused
-                  ? "favorite"
-                  : label === "Fav" && !isFocused
-                  ? "favorite-border"
-                  : label === "Profile" && isFocused
-                  ? "person"
-                  : label === "Profile" && "person-outline"
-              }
-              size={label === "Cart" ? 30 : 25}
-              color={
-                label === "Cart" ? "white" : isFocused ? "#00C5BD" : "grey"
-              }
-            />
-          </TouchableOpacity>
-        );
-      })}
+          return (
+            <TouchableOpacity
+              key={label}
+              accessibilityRole="button"
+              accessibilityStates={isFocused ? ["selected"] : []}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={[
+                styles.tab,
+                label === "Cart" && {
+                  backgroundColor: isFocused ? "#00C5BD" : "#5919AD",
+                  borderRadius: 30,
+                  marginHorizontal: 35,
+                },
+              ]}
+            >
+              <MaterialIcons
+                name={
+                  label === "Home"
+                    ? "home"
+                    : label === "Business"
+                    ? "store"
+                    : label === "Cart"
+                    ? "shopping-cart"
+                    : label === "Fav" && isFocused
+                    ? "favorite"
+                    : label === "Fav" && !isFocused
+                    ? "favorite-border"
+                    : label === "Profile" && isFocused
+                    ? "person"
+                    : label === "Profile" && "person-outline"
+                }
+                size={label === "Cart" ? 30 : 25}
+                color={
+                  label === "Cart" ? "white" : isFocused ? "#00C5BD" : "grey"
+                }
+              />
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 };

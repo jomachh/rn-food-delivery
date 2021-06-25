@@ -65,3 +65,53 @@ export const recommended = [
     business: "Casa de limón",
   },
 ];
+
+export const ingredients = [
+  {
+    name: "Torta de res",
+    image:
+      "https://chefmarketcr.com/image/cache/catalog/productos-chefmarket-ml/actualizacion-completa/carnes-rojas-y-blancas/torta-res-taylor/Torta%20de%20Res%20Taylor%201_2%20libra-3-800x926.jpg",
+  },
+  {
+    name: "Pan artesanal",
+    image:
+      "https://www.paulinacocina.net/wp-content/uploads/2015/08/P1140937-e1439263348271.jpg",
+  },
+  {
+    name: "Lechuga",
+    image:
+      "https://www.frutas-hortalizas.com/img/fruites_verdures/presentacio/53.jpg",
+  },
+  {
+    name: "Cebolla morada",
+    image: "https://www.elsiglodetorreon.com.mx/m/i/2019/02/1146486.jpeg",
+  },
+  {
+    name: "Queso mozzarella",
+    image:
+      "https://vegetables.odoo.com/web/image/product.template/104/image_1024?unique=611d399",
+  },
+];
+
+export const address = [
+  {
+    name: "Casa",
+    description: "Lomas del valle",
+    icon: "home",
+  },
+  {
+    name: "Trabajo",
+    description: "Plaza del sol",
+    icon: "work",
+  },
+];
+
+export const items = [
+  {
+    name: "Alitas BBQ",
+    price: 8.5,
+    description: "12 alitas acompañadas de salsa BBQ",
+    image:
+      "https://www.tiptoprestaurantes.com/content/images/thumbs/0000150_combo-alitas-picantes-12-piezas_480.png",
+  },
+];

@@ -3,63 +3,51 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
-import { Home } from "../screens";
+import { Home, Product, Cart } from "../screens";
 import { View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 import { TabBar } from "../components";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const StackNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Home"
-      component={Home}
-      options={{
-        headerStyle: styles.header,
-        title: "Inicio",
-        headerTitleStyle: styles.title,
-      }}
-    />
-  </Stack.Navigator>
+const TabNavigator = () => (
+  <Tab.Navigator
+    tabBar={(props) => <TabBar {...props} />}
+    tabBarOptions={{
+      showLabel: false,
+    }}
+    initialRouteName="Home"
+  >
+    <Tab.Screen name="Home" component={Home} />
+    <Tab.Screen name="Business" component={equis} />
+    <Tab.Screen name="Cart" component={Cart} />
+    <Tab.Screen name="Fav" component={equis} />
+    <Tab.Screen name="Profile" component={equis} />
+  </Tab.Navigator>
 );
 
 const equis = () => <View style={{ backgroundColor: "red", flex: 1 }} />;
 
 export const Navigation = () => (
   <NavigationContainer>
-    <Tab.Navigator
-      tabBar={(props) => <TabBar {...props} />}
-      tabBarOptions={{
-        showLabel: false,
-      }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === "Home") {
-            iconName = focused ? "home" : "home";
-          } else if (route.name === "Business") {
-            iconName = focused ? "store" : "store";
-          } else if (route.name === "Cart") {
-            iconName = focused ? "shopping-cart" : "shopping-cart";
-          } else if (route.name === "Fav") {
-            iconName = focused ? "favorite" : "favorite-border";
-          } else if (route.name === "Profile") {
-            iconName = focused ? "person" : "person-outline";
-          }
-
-          return <MaterialIcons name={iconName} size={size} color={color} />;
-        },
-      })}
-    >
-      <Tab.Screen name="Home" component={StackNavigator} />
-      <Tab.Screen name="Business" component={equis} />
-      <Tab.Screen name="Cart" component={equis} />
-      <Tab.Screen name="Fav" component={equis} />
-      <Tab.Screen name="Profile" component={equis} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={TabNavigator}
+        options={{
+          headerStyle: styles.header,
+          title: "Inicio",
+          headerTitleStyle: styles.title,
+        }}
+      />
+      <Stack.Screen
+        name="Product"
+        component={Product}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
   </NavigationContainer>
 );
 

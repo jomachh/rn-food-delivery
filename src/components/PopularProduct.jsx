@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { styles } from "../styles";
 
 export const PopularProduct = ({ name, image, description, price }) => {
   const [isFav, setFav] = useState(false);
 
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.popularProductContainer}>
+    <TouchableOpacity
+      style={styles.popularProductContainer}
+      onPress={() => navigation.navigate("Product", { name: name })}
+    >
       {isFav ? (
         <MaterialIcons
           style={styles.favButton}
@@ -41,6 +47,6 @@ export const PopularProduct = ({ name, image, description, price }) => {
         <Text style={styles.popularProductPrice}>${price}</Text>
         <MaterialIcons name="keyboard-arrow-right" size={24} color="#213751" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };

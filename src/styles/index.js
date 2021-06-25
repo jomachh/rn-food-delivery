@@ -1,14 +1,25 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 const darkText = "#213751";
 const borderRadius = 20;
+const shadow = {
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 0,
+  },
+  shadowOpacity: 0.13,
+  shadowRadius: 4.65,
+  elevation: 8,
+};
+const { width } = Dimensions.get("screen");
 
 export const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "white" },
   sectionContainer: { marginTop: 25 },
   sectionHeader: {
     marginHorizontal: 20,
-    marginBottom: 20,
+    marginBottom: 14,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -150,5 +161,84 @@ export const styles = StyleSheet.create({
   alignItemsCenter: {
     alignItems: "center",
   },
+  justifyContentCenter: {
+    justifyContent: "center",
+  },
   leftPadding: { paddingLeft: 20, paddingStart: 20 },
+  customHeaderContainer: {
+    zIndex: 1000,
+    position: "absolute",
+    top: 0,
+    height: 115,
+    width: width,
+  },
+  customHeaderItems: {
+    height: 64,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  customHeaderBackButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 64,
+    width: 64,
+  },
+  customHeaderTitle: {
+    color: "white",
+    fontSize: 23,
+    fontWeight: "700",
+  },
+  productImage: {
+    height: "50%",
+  },
+  fabFavProduct: {
+    height: 50,
+    width: 50,
+    position: "absolute",
+    top: -40,
+    right: 30,
+  },
+  descriptionText: {
+    marginHorizontal: 20,
+    color: "grey",
+    lineHeight: 14,
+  },
+  ingredientContainer: {
+    overflow: "hidden",
+    height: 110,
+    width: 90,
+  },
+  ingredientImage: {
+    height: "100%",
+    width: "100%",
+  },
+  addressBadgeContainer: {
+    marginVertical: 5,
+    marginEnd: 15,
+    height: 60,
+    borderRadius: borderRadius,
+    paddingHorizontal: 10,
+    ...shadow,
+  },
+  addressBadgeName: {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  addressBadgeDescription: {
+    fontSize: 14,
+  },
+  cartItemContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 300,
+    width: 250,
+    borderRadius: borderRadius,
+    ...shadow,
+  },
+  cartItemImage: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+  },
 });
